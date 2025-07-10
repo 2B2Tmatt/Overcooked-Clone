@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f; 
     private void Update()
     {
+        Debug.Log("Update Running"); 
         Vector2 inputVector = new Vector2(0, 0); 
         if (Input.GetKey(KeyCode.W)) {
             inputVector.y = +1; 
