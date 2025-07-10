@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    [SerializeField] private float moveSpeed = 7f; 
     private void Update()
     {
         Vector2 inputVector = new Vector2(0, 0); 
@@ -23,7 +24,9 @@ public class NewBehaviourScript : MonoBehaviour
 
         inputVector = inputVector.normalized;
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y); 
-        transform.position += moveDir; 
-        Debug.Log(inputVector); 
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        float rotateSpeed = 10f; 
+        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
+
     }
 }
